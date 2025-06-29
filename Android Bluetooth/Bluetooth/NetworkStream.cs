@@ -48,21 +48,6 @@ public class BluetoothNetworkStream : NetworkStream
     public override int Read(byte[] buffer, int offset, int count)
     {
 		using var _ = new AndroidJniScope();
-        /*
-         * TODO: investigate if it's possible to make the
-         * byte array buffer managment more efficient
-         *
-         * Right now for each read call we:
-         *  - create new temp JNI array
-         *  - use that when calling Java's InputStream.read() method
-         *  - convert that temp array to managed array
-         *  - copy from the converted array to callers provided buffer array
-         *
-         * This involved a lot of allocations and memory copy operations,
-         * perhaps there is a way to directly write at the right memory location
-         * in the caller provided buffer array.
-         */
-
         var jniBuffer = AndroidJNI.NewSByteArray(count);
         jvalue[] args = new jvalue[3];
         args[0].l = jniBuffer;

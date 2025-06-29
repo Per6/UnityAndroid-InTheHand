@@ -1,5 +1,5 @@
 {
-    "name": "InTheHand.Net.Bluetooth",
+    "name": "AndroidUnityBluetooth",
     "rootNamespace": "",
     "references": [],
     "includePlatforms": [
